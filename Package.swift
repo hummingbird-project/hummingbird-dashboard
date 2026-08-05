@@ -48,7 +48,10 @@ let package = Package(
         ),
         .testTarget(
             name: "HummingbirdDashboardTests",
-            dependencies: ["HummingbirdDashboard"],
+            dependencies: [
+                "HummingbirdDashboard",
+                .product(name: "HummingbirdTesting", package: "hummingbird"),
+            ],
             swiftSettings: swiftSettings
         ),
     ]
