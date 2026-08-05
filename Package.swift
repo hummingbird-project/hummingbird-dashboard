@@ -21,14 +21,16 @@ var swiftSettings: [SwiftSetting] = [
 
 let package = Package(
     name: "hummingbird-dashboard",
-    platforms: [.macOS(.v14), .iOS(.v17), .macCatalyst(.v17), .tvOS(.v17), .visionOS(.v1)],
+    platforms: [.macOS(.v15), .iOS(.v18), .macCatalyst(.v18), .tvOS(.v18), .visionOS(.v1)],
     products: [
         .library(name: "HummingbirdDashboard", targets: ["HummingbirdDashboard"])
     ],
     dependencies: [
-        .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.19.0", traits: []),
-        .package(url: "https://github.com/apple/swift-openapi-generator.git", from: "1.6.0"),
-        .package(url: "https://github.com/apple/swift-openapi-runtime.git", from: "1.7.0", traits: []),
+        .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.26.0", traits: []),
+        .package(url: "https://github.com/apple/swift-metrics.git", from: "2.11.0"),
+        .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-openapi-generator.git", from: "1.13.0"),
+        .package(url: "https://github.com/apple/swift-openapi-runtime.git", from: "1.12.0", traits: []),
         .package(url: "https://github.com/hummingbird-project/swift-openapi-hummingbird.git", from: "2.0.1"),
     ],
     targets: [
@@ -36,6 +38,8 @@ let package = Package(
             name: "HummingbirdDashboard",
             dependencies: [
                 .product(name: "Hummingbird", package: "hummingbird"),
+                .product(name: "DequeModule", package: "swift-collections"),
+                .product(name: "Metrics", package: "swift-metrics"),
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 .product(name: "OpenAPIHummingbird", package: "swift-openapi-hummingbird"),
             ],
